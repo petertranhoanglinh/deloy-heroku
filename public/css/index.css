@@ -1,0 +1,30 @@
+.parent {
+    position: relative;
+  }
+.child {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.mg-left-30{
+    margin-left: 30px;
+}
+.img-auto {
+    display: block;
+    max-width:230px;
+    max-height:95px;
+    width: auto;
+    height: auto;
+  }
+.height-350{
+    height: 280px;
+}
+.reszeFooter{
+    margin-top: 140px;
+}
