@@ -298,34 +298,6 @@ function Home() {
           </div>
         </div>
       </section>
-    <MessengerChat
-        pageId="536477823552110"
-        language="en_US"
-        themeColor={"#000000"}
-        bottomSpacing={300}
-        loggedInGreeting="Chào mừng bạn đến với L web 5"
-        loggedOutGreeting="loggedOutGreeting"
-        greetingDialogDisplay={"show"}
-        debugMode={true}
-        onMessengerShow={() => {
-          console.log("onMessengerShow");
-        }}
-        onMessengerHide={() => {
-          console.log("onMessengerHide");
-        }}
-        onMessengerDialogShow={() => {
-          console.log("onMessengerDialogShow");
-        }}
-        onMessengerDialogHide={() => {
-          console.log("onMessengerDialogHide");
-        }}
-        onMessengerMounted={() => {
-          console.log("onMessengerMounted");
-        }}
-        onMessengerLoad={() => {
-          console.log("onMessengerLoad");
-        }}
-  />,
       {/* end contact section */}
       {/* why section */}
       <section className="Why_section layout_padding">
@@ -454,6 +426,34 @@ function Home() {
           </div>
         </div>
       </section>
+      <MessengerChat
+        pageId="536477823552110"
+        language="en_US"
+        themeColor={"#000000"}
+        bottomSpacing={200}
+        loggedInGreeting="Chào mừng bạn đến với L web 5"
+        loggedOutGreeting="Chào tạm biệt bạn cảm ơn đã sử dụng dịch vụ của chúng tôi"
+        greetingDialogDisplay={"show"}
+        debugMode={true}
+        onMessengerShow={() => {
+          console.log("onMessengerShow");
+        }}
+        onMessengerHide={() => {
+          console.log("onMessengerHide");
+        }}
+        onMessengerDialogShow={() => {
+          console.log("onMessengerDialogShow");
+        }}
+        onMessengerDialogHide={() => {
+          console.log("onMessengerDialogHide");
+        }}
+        onMessengerMounted={() => {
+          console.log("onMessengerMounted");
+        }}
+        onMessengerLoad={() => {
+          console.log("onMessengerLoad");
+        }}
+  />
       {/* end info section */}
       <hr className="footer_hr" />
       {/* footer section */}
