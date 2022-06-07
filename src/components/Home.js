@@ -430,7 +430,7 @@ function Home() {
         pageId="536477823552110"
         language="en_US"
         themeColor={"#000000"}
-        bottomSpacing={200}
+        bottomSpacing={10}
         loggedInGreeting="Chào mừng bạn đến với L web 5"
         loggedOutGreeting="Chào tạm biệt bạn cảm ơn đã sử dụng dịch vụ của chúng tôi"
         greetingDialogDisplay={"show"}
