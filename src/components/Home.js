@@ -299,11 +299,11 @@ function Home() {
         </div>
       </section>
     <MessengerChat
-        pageId="100071469950170"
-        language="sv_SE"
+        pageId="536477823552110"
+        language="en_US"
         themeColor={"#000000"}
         bottomSpacing={300}
-        loggedInGreeting="loggedInGreeting"
+        loggedInGreeting="Chào mừng bạn đến với L web 5"
         loggedOutGreeting="loggedOutGreeting"
         greetingDialogDisplay={"show"}
         debugMode={true}
