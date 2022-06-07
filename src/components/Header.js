@@ -96,7 +96,7 @@ export default class Header extends React.Component{
                         }
                         <li className="divider" />
                         <li> <Link to={'/signUp'}><i className="fa fa-calendar-o" /> SignUp</Link></li>
-                        <li> <Link to={'/login'}><i className="material-icons"></i> Login</Link></li>
+                        <li> <Link to={'/login'}><i class="fa fa-sign-in" aria-hidden="true"></i> Login</Link></li>
                         <li onClick={this.logout}> <Link to={'/'}><i className="material-icons"></i> Logout</Link></li>
                       </ul>
                     </li>

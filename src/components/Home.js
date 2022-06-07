@@ -1,3 +1,4 @@
+import { MessengerChat } from "react-messenger-chat-plugin";
 function Home() {
   return (
     <div>
@@ -11,24 +12,19 @@ function Home() {
         {/* slider section */}
         <section className=" slider_section position-relative">
           <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-            <ol className="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active">01</li>
-              <li data-target="#carouselExampleIndicators" data-slide-to={1}>02</li>
-            </ol>
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <div className="row">
                   <div className="col-md-3 offset-md-2">
                     <div className="slider_detail">
                       <h1>
-                        INNOVATIVE
+                        L 
                         <span>
-                          SOLUTIONS
+                         WEB 5
                         </span>
                       </h1>
-                      <p>
-                        We find the best solutions fot you, we redesign your home and work places.
-                        Discover why over 5,100 home owners trust initiative
+                      <p style={{color:"blue"}}>
+                        Chúng tôi cố gắng quản lý rủi ro đầu tư tiền mã hóa cho người mới bắt đầu sử dụng dữ liệu thật từ Coin Maket Cap
                       </p>
                       <div>
                         <a href>
@@ -44,42 +40,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <div className="carousel-item">
-                <div className="row">
-                  <div className="col-md-3 offset-md-2">
-                    <div className="slider_detail">
-                      <h1>
-                        INNOVATIVE
-                        <span>
-                          SOLUTIONS
-                        </span>
-                      </h1>
-                      <p>
-                        We find the best solutions fot you, we redesign your home and work places.
-                        Discover why over 5,100 home owners trust initiative
-                      </p>
-                      <div>
-                        <a href>
-                          Read More
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-7">
-                    <div className="slider_img-box">
-                      <img src="images/slider-img.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel_btn-container">
-              <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span className="sr-only">Previous</span>
-              </a>
-              <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span className="sr-only">Next</span>
-              </a>
             </div>
           </div>
         </section>
@@ -89,11 +49,10 @@ function Home() {
       <section className="about_section layout_padding">
         <div className="container">
           <h2>
-            WHY INITIATIVE COMPANY
+            VÌ SAO CHỌN CHÚNG TÔI
           </h2>
           <p>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at
-            its layout. The point of using Lorem
+            Quản lý đầy đủ mã tiền điện tử có trên thị trường bằng hệ thống Posgres Sql nhanh chính xác và bảo mật
           </p>
         </div>
         <div className="container">
@@ -105,18 +64,12 @@ function Home() {
                 </div>
                 <div className="card_detail-ox">
                   <h4>
-                    10 YEARS EXPERIENCE
+                    2 YEARS EXPERIENCE
                   </h4>
                   <p>
-                    Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
-                    vehicula ut id elit. Morbi leo risus.
+                    2 năm kinh nghiệm quản lý hệ thống Oracal DB 
                   </p>
                 </div>
-              </div>
-              <div>
-                <a href className="about_btn">
-                  Read More
-                </a>
               </div>
             </div>
             <div className="about_card">
@@ -129,15 +82,9 @@ function Home() {
                     A PRO ARCHITECTS TEAM
                   </h4>
                   <p>
-                    Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
-                    vehicula ut id elit. Morbi leo risus.
+                    Đội ngũ lập trình trẻ năng động và nhiệt huyết
                   </p>
                 </div>
-              </div>
-              <div>
-                <a href className="about_btn">
-                  Read More
-                </a>
               </div>
             </div>
             <div className="about_card">
@@ -150,15 +97,9 @@ function Home() {
                     1000+ HAPPY CUSTOMERS
                   </h4>
                   <p>
-                    Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies
-                    vehicula ut id elit. Morbi leo risus.
+                    Luôn mang đến trải nghiệm vui vẻ cho người sử dụng
                   </p>
                 </div>
-              </div>
-              <div>
-                <a href className="about_btn">
-                  Read More
-                </a>
               </div>
             </div>
           </div>
@@ -166,41 +107,6 @@ function Home() {
       </section>
       {/* end about section */}
       {/* portfolio section */}
-      <section className="portfolio_section layout_padding2">
-        <div className="container">
-          <h2>
-            OUR PORTFOLIO
-          </h2>
-          <p>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at
-            its layout. The point of using Lorem
-          </p>
-        </div>
-        <div className="container layout_padding2-top ">
-          <div className="row">
-            <div className="col-md-8">
-              <div className="portfolio_img-box">
-                <img src="images/portfolio-img-1.png" alt="" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="portfolio_img-box">
-                <img src="images/portfolio-img-2.jpg" alt="" />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="portfolio_img-box">
-                <img src="images/portfolio-img-3.png" alt="" />
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="portfolio_img-box">
-                <img src="images/portfolio-img-4.png" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* end portfolio section */}
       {/* team section  */}
       <section className="team_section layout_padding">
@@ -209,7 +115,7 @@ function Home() {
             OUR TEAM
           </h2>
           <p>
-            It is a long established fact that a reader will be distracted by the readable
+            Tuổi trẻ với khát vọng mạnh mẽ là kim chỉ nan của chúng tôi
           </p>
         </div>
         <div className="container">
@@ -341,11 +247,8 @@ function Home() {
       {/* contact section */}
       <section className="contact_section layout_padding">
         <div className="container">
-          <p>
-            Don’t Hesitate To Ask
-          </p>
           <h2 className>
-            FREE CONSULTATION
+           Liên Hệ với chúng tôi ngay
           </h2>
         </div>
         <div className="container">
@@ -395,16 +298,42 @@ function Home() {
           </div>
         </div>
       </section>
+    <MessengerChat
+        pageId="100071469950170"
+        language="sv_SE"
+        themeColor={"#000000"}
+        bottomSpacing={300}
+        loggedInGreeting="loggedInGreeting"
+        loggedOutGreeting="loggedOutGreeting"
+        greetingDialogDisplay={"show"}
+        debugMode={true}
+        onMessengerShow={() => {
+          console.log("onMessengerShow");
+        }}
+        onMessengerHide={() => {
+          console.log("onMessengerHide");
+        }}
+        onMessengerDialogShow={() => {
+          console.log("onMessengerDialogShow");
+        }}
+        onMessengerDialogHide={() => {
+          console.log("onMessengerDialogHide");
+        }}
+        onMessengerMounted={() => {
+          console.log("onMessengerMounted");
+        }}
+        onMessengerLoad={() => {
+          console.log("onMessengerLoad");
+        }}
+  />,
       {/* end contact section */}
       {/* why section */}
       <section className="Why_section layout_padding">
         <div className="container">
           <h2>WHY CHOOSE US?</h2>
           <p>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at
-            its layout. The point of using LoremIt is a long established fact that a reader will be distracted by the
-            readable
-            content of a page when looking at its layout. The point of using Lorem
+              Quản lý tiền mã hóa 1 cách chuyên nghiệp nhất có thể với dữ liệu thực tế có trước. Đưa ra các giải pháp  đầu tư tiền mã hóa theo phong cách của bạn.
+              Sử dụng tiền mã hóa để mua bán sản phẩm duy nhất tại Việt Nam.
           </p>
         </div>
       </section>
