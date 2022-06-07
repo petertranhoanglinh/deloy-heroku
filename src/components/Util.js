@@ -10,5 +10,11 @@ let headersList = {
   Authorization: AuthStr,
   "Content-Type": "application/json",
 };
+let headersListSave = {
+  Accept: "*/*",
+  "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+  Authorization: AuthStr,
+  "Accept-Language": "application/json",
+};
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { URL, URL_REST, headersList, userDetail };
+export default { URL, URL_REST, headersList, userDetail,headersListSave };
