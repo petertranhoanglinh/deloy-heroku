@@ -14,6 +14,7 @@ import AddNotify from './components/AddNotify';
 import AddProduct from './components/AddProduct';
 import ListProduct from './components/ListProduct';
 import ProductDetail from './components/ProductDetail';
+import { MessengerChat } from "react-messenger-chat-plugin";
 
 function App(){
   return (
@@ -36,6 +37,34 @@ function App(){
        <Route path='/listProduct' element = {<ListProduct></ListProduct>}/>
        <Route path='/addProduct/:pdtId' element = {<AddProduct></AddProduct>}/>
       </Routes>
+      <MessengerChat
+        pageId="536477823552110"
+        language="en_US"
+        themeColor={"#000000"}
+        bottomSpacing={10}
+        loggedInGreeting="Chào mừng bạn đến với L web 5"
+        loggedOutGreeting="Chào tạm biệt bạn cảm ơn đã sử dụng dịch vụ của chúng tôi"
+        greetingDialogDisplay={"show"}
+        debugMode={true}
+        onMessengerShow={() => {
+          console.log("onMessengerShow");
+        }}
+        onMessengerHide={() => {
+          console.log("onMessengerHide");
+        }}
+        onMessengerDialogShow={() => {
+          console.log("onMessengerDialogShow");
+        }}
+        onMessengerDialogHide={() => {
+          console.log("onMessengerDialogHide");
+        }}
+        onMessengerMounted={() => {
+          console.log("onMessengerMounted");
+        }}
+        onMessengerLoad={() => {
+          console.log("onMessengerLoad");
+        }}
+  />
     </div>
   )
 }
