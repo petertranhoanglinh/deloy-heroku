@@ -34,6 +34,7 @@ function App(){
         <Route path='/addProduct' element = { <AddProduct/>}/>
         <Route path='/productDetail/:pdtId' element = {<ProductDetail></ProductDetail> }/>
        <Route path='/listProduct' element = {<ListProduct></ListProduct>}/>
+       <Route path='/addProduct/:pdtId' element = {<AddProduct></AddProduct>}/>
       </Routes>
     </div>
   )
