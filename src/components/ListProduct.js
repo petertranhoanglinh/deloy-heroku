@@ -90,8 +90,8 @@ class ListProduct extends React.Component {
                             {
                                 products.map(
                                     product =>
-                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style={{padding: "20px" }}>
-                                            <div className="thumbnail" style={{ width: "150px", height: "120px" , textAlign: 'center'}}s>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style={{paddingTop: "20px" }}>
+                                            <div className="thumbnail" style={{textAlign: 'center'}}>
                                                 <img src={Util.URL_REST + product.image}
                                                     alt="image" style={{ width: "150px", height: "120px" }} onClick={() => this.openImg(Util.URL_REST + product.image)} />
                                                
