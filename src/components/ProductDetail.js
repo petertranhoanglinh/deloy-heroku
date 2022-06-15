@@ -56,6 +56,16 @@ const ProductDetail = () =>{
          });
  })  
  }
+ const addToCart = (pdtId) => {
+   fetch(Util.URL_REST+"api/order/callOrdTmt/"+pdtId+"/" + 1, {
+    method: "POST",
+    headers: Util.headersList
+    }).then((res) => res.json())
+   .then((json) => {
+        alert(json.returnMessage);
+        window.location.reload();
+    })  
+}
     return (
         <div>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -186,7 +196,7 @@ const ProductDetail = () =>{
                 <hr />
                 <div className="row">
                   <div className="col-sm-12 col-md-6 col-lg-6">
-                    <button className="btn btn-success btn-lg">Add to cart {state.product.price} {state.product.kindCoin}</button>
+                    <button className="btn btn-success btn-lg" onClick={() => addToCart(state.product.pdtId)}>Add to cart {state.product.price} {state.product.kindCoin}</button>
                   </div>
                 </div>
               </div>

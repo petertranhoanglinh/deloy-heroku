@@ -53,6 +53,16 @@ export default class Header extends React.Component{
                   text:json.userName
                 });
         })
+          fetch(Util.URL_REST + "api/order/countTmt" ,{
+            method: "GET",
+            headers: Util.headersList
+          }).then((res) => res.json())
+            .then((json) => {
+                console.log(json);
+                this.setState({
+                  count: json,
+                });
+            })
      }
     render(){
       
