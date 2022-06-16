@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 import React from "react";
 import Util from "./Util";
-import BlockUi from 'react-block-ui';
-import 'react-block-ui/style.css';
+//import BlockUi from 'react-block-ui';
+//import 'react-block-ui/style.css';
 
 
 class Cart extends React.Component {
@@ -65,9 +65,11 @@ class Cart extends React.Component {
               } 
     render() {
         const { DataisLoaded , carts} = this.state;
-            return (
+        if (!DataisLoaded) return <div>
+        <h6 className="text-title-cl"> Plesea login.... </h6> </div>;
+        else return (
               <div>
-                  <BlockUi blocking={!DataisLoaded}></BlockUi>
+                 {/* <BlockUi blocking={!DataisLoaded}></BlockUi> */}
               <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
               
               {/*---- Include the above in your HEAD tag --------*/}
