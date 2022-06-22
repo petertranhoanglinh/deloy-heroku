@@ -14,7 +14,7 @@ class Cart extends React.Component {
             carts: [],
             DataisLoaded: false,
             ordtmt:0,
-            sumAmt:0,
+            sumAmt:0
         };
     }
     calcel = (ordtmt) => {
@@ -56,6 +56,20 @@ class Cart extends React.Component {
     setPram = (event) => {
         this.setState({ [event.target.name]: event.target.value.trim() });
     }
+    cancelProduct =(ordtmt , pdtId)=>{
+      if (window.confirm('Do you want to cancel product ?')){
+        fetch(Util.URL_REST+"api/order/cancelOnly/"+ordtmt+"/"+pdtId,{
+          method: "GET",
+          headers: Util.headersList
+          }).then((res) => res.json())
+         .then((json) => {
+              alert(json.returnMessage);
+              window.location.reload();
+          })  
+      }else{
+        return false;
+      }
+    }
     componentDidMount() {
       var sumAmt1= 0;
             fetch(Util.URL_REST + "api/order/getListOrderTmt" ,{
@@ -66,7 +80,7 @@ class Cart extends React.Component {
                   if(json.length === 0){
                     this.setState({
                       carts: json,
-                      DataisLoaded: true,
+                      DataisLoaded: true
                   });
                   }else{
                   for(var i = 0; i < json.length ;i++){
@@ -132,7 +146,8 @@ class Cart extends React.Component {
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.pricePdt}{" "}{cart.kindCoin}</strong></td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.amt}</strong></td>
                             <td className="col-sm-1 col-md-1">
-                              <button type="button" className="btn btn-danger">
+                              <button type="button" className="btn btn-danger"
+                               onClick={() => this.cancelProduct(this.state.ordtmt,cart.pdtId)}>
                                 <span className="glyphicon glyphicon-remove" /> Remove
                               </button></td>
                          </tr>
@@ -145,21 +160,21 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h5>Subtotal</h5></td>
-                          <td className="text-right"><h5><strong>${this.state.sumAmt}</strong></h5></td>
+                          <td className="text-right"><h5><strong>{this.state.sumAmt}$</strong></h5></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h5>Estimated shipping</h5></td>
-                          <td className="text-right"><h5><strong>$0</strong></h5></td>
+                          <td className="text-right"><h5><strong>0$</strong></h5></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h3>Total(USD)</h3></td>
-                          <td className="text-right"><h3><strong>${this.state.sumAmt}</strong></h3></td>
+                          <td className="text-right"><h3><strong>{this.state.sumAmt}$</strong></h3></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
