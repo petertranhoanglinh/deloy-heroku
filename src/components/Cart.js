@@ -33,7 +33,26 @@ class Cart extends React.Component {
        
     }
  
-    
+    plus = (pdtId) =>{
+      var qty = 1;
+      fetch(Util.URL_REST+"api/order/callOrdTmt/"+pdtId+"/"+ qty, {
+        method: "POST",
+        headers: Util.headersList
+        }).then((res) => res.json())
+       .then((json) => {
+            this.componentDidMount();
+        })  
+    }
+    minus =(pdtId)=>{
+      var qty = -1
+      fetch(Util.URL_REST+"api/order/callOrdTmt/"+pdtId+"/" + qty, {
+        method: "POST",
+        headers: Util.headersList
+        }).then((res) => res.json())
+       .then((json) => {
+          this.componentDidMount();
+        })  
+    }
     setPram = (event) => {
         this.setState({ [event.target.name]: event.target.value.trim() });
     }
@@ -106,7 +125,9 @@ class Cart extends React.Component {
                             
                               </div></td>
                             <td className="col-sm-1 col-md-1" style={{textAlign: 'center'}}>
-                              <input type="email" className="form-control" id="exampleInputEmail1" defaultValue={cart.qty} />
+                            <td className="col-sm-1 col-md-1 text-center"><strong>{cart.qty}</strong></td>
+                              <button onClick={() => this.plus(cart.pdtId)}>+</button>
+                              <button onClick={() => this.minus(cart.pdtId)}>-</button>
                             </td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.pricePdt}{" "}{cart.kindCoin}</strong></td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.amt}</strong></td>
