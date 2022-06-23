@@ -16,5 +16,14 @@ let headersListSave = {
   Authorization: AuthStr,
   "Accept-Language": "application/json",
 };
+
+function setComma(n) {
+	var reg = /(^[+-]?\d+)(\d{3})/;
+	n += '';
+	while (reg.test(n)) {
+		n = n.replace(reg, '$1' + ',' + '$2');
+	}
+	return n;
+}
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { URL, URL_REST, headersList, userDetail,headersListSave };
+export default { URL, URL_REST, headersList, userDetail,headersListSave,setComma};

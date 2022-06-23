@@ -14,22 +14,34 @@ class Cart extends React.Component {
             carts: [],
             DataisLoaded: false,
             ordtmt:0,
-            sumAmt:0
+            sumAmt:0,
+            type:'cart',
+            showTr:''
         };
     }
     calcel = (ordtmt) => {
-      if (window.confirm('Do you want to cancel order ?')){
-        fetch(Util.URL_REST+"api/order/cancel/"+ordtmt,{
-          method: "GET",
-          headers: Util.headersList
-          }).then((res) => res.json())
-         .then((json) => {
-              alert(json.returnMessage);
-              window.location.reload();
-          })  
+      if(this.state.type === 'checkout'){
+        this.setState({
+          showTr:'',
+          type:'cart'
+        })
+        alert("You have cancel Payment.")
+        
       }else{
-        return false;
+        if (window.confirm('Do you want to cancel order ?')){
+          fetch(Util.URL_REST+"api/order/cancel/"+ordtmt,{
+            method: "GET",
+            headers: Util.headersList
+            }).then((res) => res.json())
+           .then((json) => {
+                alert(json.returnMessage);
+                window.location.reload();
+            })  
+        }else{
+          return false;
+        }
       }
+      
        
     }
  
@@ -70,6 +82,14 @@ class Cart extends React.Component {
         return false;
       }
     }
+    checkOut =()=>{
+      alert(this.state.sumAmt.toFixed(2));
+      this.setState({
+        showTr:'none',
+        type:'checkout'
+      }
+      )
+    }
     componentDidMount() {
       var sumAmt1= 0;
             fetch(Util.URL_REST + "api/order/getListOrderTmt" ,{
@@ -97,7 +117,7 @@ class Cart extends React.Component {
         
               } 
     render() {
-        const { DataisLoaded , carts} = this.state;
+        const { DataisLoaded , carts ,type} = this.state;
         if (!DataisLoaded) return <div>
         <h6 className="text-title-cl"> Plesea login.... </h6> </div>;
         else return (
@@ -143,8 +163,8 @@ class Cart extends React.Component {
                               <button onClick={() => this.plus(cart.pdtId)}>+</button>
                               <button onClick={() => this.minus(cart.pdtId)}>-</button>
                             </td>
-                            <td className="col-sm-1 col-md-1 text-center"><strong>{cart.pricePdt}{" "}{cart.kindCoin}</strong></td>
-                            <td className="col-sm-1 col-md-1 text-center"><strong>{cart.amt.toFixed(2)}</strong></td>
+                            <td className="col-sm-1 col-md-1 text-center"><strong>{ Util.setComma(cart.pricePdt)}{" "}{cart.kindCoin}</strong></td>
+                            <td className="col-sm-1 col-md-1 text-center"><strong>{Util.setComma(cart.amt.toFixed(2))}</strong></td>
                             <td className="col-sm-1 col-md-1">
                               <button type="button" className="btn btn-danger"
                                onClick={() => this.cancelProduct(this.state.ordtmt,cart.pdtId)}>
@@ -160,7 +180,7 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h5>Subtotal</h5></td>
-                          <td className="text-right"><h5><strong>{this.state.sumAmt.toFixed(2)}$</strong></h5></td>
+                          <td className="text-right"><h5><strong>{ Util.setComma(this.state.sumAmt.toFixed(2))}$</strong></h5></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
@@ -174,7 +194,7 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h3>Total(USD)</h3></td>
-                          <td className="text-right"><h3><strong>{this.state.sumAmt.toFixed(2)}$</strong></h3></td>
+                          <td className="text-right"><h3><strong>{Util.setComma(this.state.sumAmt.toFixed(2))}$</strong></h3></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
@@ -188,9 +208,17 @@ class Cart extends React.Component {
                               </button>
                             </td>
                           <td>
-                            <button type="button" className="btn btn-success">
-                              Checkout <span className="glyphicon glyphicon-play" />
-                            </button></td>
+                            <button type="button" className="btn btn-success" onClick={this.checkOut}
+                            style={{display:this.state.showTr}}
+                            >
+                              Checkout<span className="glyphicon glyphicon-play" />
+                            </button>
+                            {
+                              type==='checkout'? <button type="button" className="btn btn-success">
+                                Order<span className="glyphicon glyphicon-play" />
+                             </button>:null
+                            }
+                          </td>
                         </tr>
                       </tbody>
                     </table>

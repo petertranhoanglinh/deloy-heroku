@@ -226,10 +226,10 @@ class Balance extends React.Component {
                   <td className="text-td-cl">{coin.accountId}</td>
                   <td className="text-td-cl">{coin.coinId}</td>
                   <td className="text-td-cl">{coin.contract}</td>
-                  <td className="text-td-cl">{coin.quantityReal}</td>
+                  <td className="text-td-cl">{Util.setComma(coin.quantityReal)}</td>
                   <td className="text-td-cl">{coin.timeUpdate}</td>
-                  <td className="text-td-cl">{coin.price}</td>
-                  <td className="text-td-cl">{coin.value}</td>
+                  <td className="text-td-cl">{Util.setComma(coin.price)}</td>
+                  <td className="text-td-cl">{Util.setComma(coin.value)}</td>
                   {this.state.showHideButton ? (
                     <td className="text-td-cl">
                       <input

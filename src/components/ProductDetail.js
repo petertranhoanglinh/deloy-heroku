@@ -106,8 +106,13 @@ const ProductDetail = () =>{
                 </h2>
                 <hr />
                 <h3 className="price-container">
-                  {state.product.price} {state.product.kindCoin}
+                  {Util.setComma(state.product.price)} {state.product.kindCoin}
                 </h3>
+                <div className="row">
+                  <div className="col-sm-12 col-md-6 col-lg-6">
+                    <button className="btn btn-success btn-lg" onClick={() => addToCart(state.product.pdtId)}>Add to cart</button>
+                  </div>
+                </div>
                 <hr />
                 <div className="description description-tabs">
                   <ul id="myTab" className="nav nav-pills">
@@ -194,11 +199,6 @@ const ProductDetail = () =>{
                  
                 </div>
                 <hr />
-                <div className="row">
-                  <div className="col-sm-12 col-md-6 col-lg-6">
-                    <button className="btn btn-success btn-lg" onClick={() => addToCart(state.product.pdtId)}>Add to cart {state.product.price} {state.product.kindCoin}</button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

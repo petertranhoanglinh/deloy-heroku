@@ -110,7 +110,7 @@ class ListProduct extends React.Component {
                                       <p className="result-label temp4"><img width={20} height={20} className="lazyload" alt="VNPAY GIẢM 500k" data-src="https://cdn.tgdd.vn/2020/10/content/icon6-50x50.png" /><span>Buy now</span></p>        <h3>{product.pdtName}</h3>
                                       <p className="item-txt-online">Online</p>
                                       <strong className="price">
-                                         {product.price} {''} / {''}{product.kindCoin} 
+                                         {Util.setComma(product.price)} {''} / {''}{product.kindCoin} 
                                         {/* <small>-10%</small> */}
                                       </strong>
                                       <p className="vote-txt">

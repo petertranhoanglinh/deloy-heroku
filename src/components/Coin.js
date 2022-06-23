@@ -110,7 +110,7 @@ class Coin extends React.Component {
                                         <tr key={coin.coinId}>
                                             <td className="text-td-cl" onClick={() => this.UpdatePrice(coin.coinId)}>{coin.coinId}</td>
                                             <td className="text-td-cl" onClick={() => this.UpdatePrice(coin.coinId)}>{coin.coinName}</td>
-                                            <td className="text-td-cl" onClick={() => this.UpdatePrice(coin.coinId)}>{coin.price}</td>
+                                            <td className="text-td-cl" onClick={() => this.UpdatePrice(coin.coinId)}>{Util.setComma(coin.price)}</td>
                                             <td className="text-td-cl" onClick={() => this.UpdatePrice(coin.coinId)}>{coin.timeUpdate}</td>
                                         </tr>
                                 )
