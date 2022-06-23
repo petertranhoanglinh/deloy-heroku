@@ -144,7 +144,7 @@ class Cart extends React.Component {
                               <button onClick={() => this.minus(cart.pdtId)}>-</button>
                             </td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.pricePdt}{" "}{cart.kindCoin}</strong></td>
-                            <td className="col-sm-1 col-md-1 text-center"><strong>{cart.amt}</strong></td>
+                            <td className="col-sm-1 col-md-1 text-center"><strong>{cart.amt.toFixed(2)}</strong></td>
                             <td className="col-sm-1 col-md-1">
                               <button type="button" className="btn btn-danger"
                                onClick={() => this.cancelProduct(this.state.ordtmt,cart.pdtId)}>
@@ -160,7 +160,7 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h5>Subtotal</h5></td>
-                          <td className="text-right"><h5><strong>{this.state.sumAmt}$</strong></h5></td>
+                          <td className="text-right"><h5><strong>{this.state.sumAmt.toFixed(2)}$</strong></h5></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
@@ -174,7 +174,7 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h3>Total(USD)</h3></td>
-                          <td className="text-right"><h3><strong>{this.state.sumAmt}$</strong></h3></td>
+                          <td className="text-right"><h3><strong>{this.state.sumAmt.toFixed(2)}$</strong></h3></td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
