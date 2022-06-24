@@ -24,7 +24,8 @@ class Cart extends React.Component {
         this.setState({
           showTr:'',
           type:'cart'
-        })
+        });
+        localStorage.removeItem('statusCart');
         alert("You have cancel Payment.")
         
       }else{
@@ -89,8 +90,16 @@ class Cart extends React.Component {
         type:'checkout'
       }
       )
+      localStorage.setItem("statusCart" , 'checkout');
     }
     componentDidMount() {
+      if(localStorage.getItem('statusCart') === 'checkout'){
+        this.setState({
+          showTr:'none',
+          type:'checkout'
+        }
+        )
+      }
       var sumAmt1= 0;
             fetch(Util.URL_REST + "api/order/getListOrderTmt" ,{
                 method: "GET",
@@ -160,13 +169,13 @@ class Cart extends React.Component {
                               </div></td>
                             <td className="col-sm-1 col-md-1" style={{textAlign: 'center'}}>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.qty}</strong></td>
-                              <button onClick={() => this.plus(cart.pdtId)}>+</button>
-                              <button onClick={() => this.minus(cart.pdtId)}>-</button>
+                              <button  style={{display:this.state.showTr}} onClick={() => this.plus(cart.pdtId)}>+</button>
+                              <button  style={{display:this.state.showTr}} onClick={() => this.minus(cart.pdtId)}>-</button>
                             </td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{ Util.setComma(cart.pricePdt)}{" "}{cart.kindCoin}</strong></td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{Util.setComma(cart.amt.toFixed(2))}</strong></td>
                             <td className="col-sm-1 col-md-1">
-                              <button type="button" className="btn btn-danger"
+                              <button style={{display:this.state.showTr}} type="button" className="btn btn-danger"
                                onClick={() => this.cancelProduct(this.state.ordtmt,cart.pdtId)}>
                                 <span className="glyphicon glyphicon-remove" /> Remove
                               </button></td>
@@ -202,11 +211,23 @@ class Cart extends React.Component {
                           <td> 
                           <button type="button" class="btn btn-danger" onClick={() => this.calcel(this.state.ordtmt)}>Cancel</button>
                            </td>
-                           <td>                            
-                              <button type="button" className="btn btn-default">
+                            <td >                            
+                              <button type="button" className="btn btn-default"  style={{display:this.state.showTr}}>
                               <Link to={'/listProduct'}>  <span className="glyphicon glyphicon-shopping-cart"> Continue Shopping</span></Link>
                               </button>
+                              {
+                              type ==='checkout'? 
+                              <select name="" id="input" class="form-control" style={{paddingTop:'10px'}}>
+                                <option value="CARD">Receive product before</option>
+                                <option value="CARD">Via ATM in VietNam</option>
+                                <option value="COIN">Via In Coins</option>
+                                <option value="MOMO">Via E-wallet - VN-PAY</option>
+                              </select>:null
+                              
+                            }
                             </td>
+                           
+
                           <td>
                             <button type="button" className="btn btn-success" onClick={this.checkOut}
                             style={{display:this.state.showTr}}
