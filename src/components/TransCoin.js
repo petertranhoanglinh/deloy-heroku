@@ -12,7 +12,7 @@ class TransCoin extends React.Component {
         };
     }
 
-    UpdatePrice = (coinId) => {
+    TransCoin = (coinId) => {
         fetch(Util.URL_REST + "api/coin/getMaketCap/" + coinId).then((res) => res.json())
             .then((json) => {
                 console.log(json);
@@ -20,13 +20,12 @@ class TransCoin extends React.Component {
             })
 
     }
-
-    handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
-        //  alert(this.state.activePage);
-        this.setState({ activePage: pageNumber });
-
-        fetch(Util.URL_REST + "api/coin/getAllCoin/" + pageNumber, {
+    setPram = (event) => {
+        this.setState({ [event.target.name]: event.target.value.trim() });
+    }
+    componentDidMount() {
+        var a = -1
+        fetch(Util.URL_REST + "api/coin/getAllCoin/" + a, {
             method: "GET",
             headers: Util.headersList
         }).then((res) => res.json())
@@ -34,57 +33,42 @@ class TransCoin extends React.Component {
                 console.log(json);
                 this.setState({
                     coins: json,
-                    DataisLoaded: true
                 });
             })
-
-    }
-
-    searchCoin = () => {
-
-        var coinId = this.state.searchCoin;
-        fetch(Util.URL_REST + "api/coin/getMaketCap/" + coinId)
-            .then((res) => res.json())
-            .then((json) => {
-                var arr = new Array(json);
-                if (json.statusCode === 2) {
-                    alert(json.message)
-                    return false;
-                }
-                this.componentDidMount(arr);
-            })
-
-    }
-    setPram = (event) => {
-        this.setState({ [event.target.name]: event.target.value.trim() });
-    }
-    componentDidMount(item) {
-        if (item == null) {
-            fetch(Util.URL_REST + "api/coin/getAllCoin/" + 1, {
-                method: "GET",
-                headers: Util.headersList
-            }).then((res) => res.json())
-                .then((json) => {
-                    console.log(json);
-                    this.setState({
-                        coins: json,
-                        DataisLoaded: true
-                    });
-                })
-        } else {
-            this.setState({
-                coins: item,
-                DataisLoaded: true
-            })
-        }
+        
 
     }
 
 
     render() {
+      
+        
+        const {coins } = this.state;
             return (
-            <div>
-              
+            <div className="container">
+                <select style={{marginRight:'10px' , width:'30%',float:'left'}} class="form-control">
+                {
+                            coins.map(
+                                    coin =>
+                                     <option key={coin.coinId} value = {coin.coinId}>{coin.coinName}</option>
+                                        
+                                )
+                }
+                </select>
+
+                <span style={{marginRight:'50px'}}>TO</span>
+
+                <select class="form-control" style={{width:'30%' , float:'right'}}>
+                {
+                            coins.map(
+                                    coin =>
+                                     <option key={coin.coinId} value = {coin.coinId}>{coin.coinName}</option>
+                                        
+                                )
+                }
+                </select>
+                
+                
             </div>
             );
     }

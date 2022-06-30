@@ -38,6 +38,7 @@ export default class Header extends React.Component{
        }
     }
     componentDidMount() {
+      // getUserDetail
         fetch(Util.URL_REST + "api/getUserDetail", {
             method: "GET",
             headers: Util.headersList
@@ -53,6 +54,7 @@ export default class Header extends React.Component{
                   text:json.userName
                 });
         })
+        // get count ordTmT
           fetch(Util.URL_REST + "api/order/countTmt" ,{
             method: "GET",
             headers: Util.headersList
