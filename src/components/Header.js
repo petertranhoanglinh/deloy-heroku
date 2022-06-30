@@ -91,6 +91,7 @@ export default class Header extends React.Component{
                 <div id="navbarCollapse" className="collapse navbar-collapse">		
                   <ul className="nav navbar-nav navbar-right">
                     <li className="active"><Link to={'/'}><i className="fa fa-home" /><span>Home</span></Link></li>
+                    <li> <Link to={'/trans'}><i className="glyphicon glyphicon-align-left" aria-hidden="true"> </i> <span>Coin conversion</span></Link></li>
                     <li> <Link to={'/balance'}><i className="fa fa-briefcase" /><span>Balance</span></Link></li>
                     <li><Link to={'/product'}><i className="fa fa-gears" /><span>Product</span></Link></li>
                     <li><Link to={'/coin'}><i className="fa fa-users" /><span>Coin</span></Link></li>

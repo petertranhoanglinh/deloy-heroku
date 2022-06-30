@@ -1,7 +1,7 @@
-var URL_REST = "https://tienaodemo12.herokuapp.com/";
-//var URL_REST = "http://localhost:8089/";
-//var URL = "http://localhost:3000/";
-var URL = "https://lweb5.herokuapp.com/";
+//var URL_REST = "https://tienaodemo12.herokuapp.com/";
+var URL_REST = "http://localhost:8089/";
+var URL = "http://localhost:3000/";
+//var URL = "https://lweb5.herokuapp.com/";
 const token = localStorage.getItem("token");
 const AuthStr = "Bearer " + token;
 const userDetail = JSON.parse(localStorage.getItem("userDetail"));
