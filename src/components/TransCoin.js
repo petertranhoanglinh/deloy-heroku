@@ -25,10 +25,8 @@ class TransCoin extends React.Component {
     }
     componentDidMount() {
         var a = -1
-        fetch(Util.URL_REST + "api/coin/getAllCoin/" + a, {
-            method: "GET",
-            headers: Util.headersList
-        }).then((res) => res.json())
+        fetch(Util.URL_REST + "api/coin/getAllCoin/" + a)
+        .then((res) => res.json())
             .then((json) => {
                 console.log(json);
                 this.setState({
