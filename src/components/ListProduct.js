@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import Util from "./Util"
+import Pagination from "react-js-pagination";
 
 class ListProduct extends React.Component {
     
@@ -36,6 +37,25 @@ class ListProduct extends React.Component {
             .then((json) => {
                 this.setState({
                     products: json,
+                    DataisLoaded: true
+                });
+            })
+
+    }
+
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        //  alert(this.state.activePage);
+        this.setState({ activePage: pageNumber });
+
+        fetch(Util.URL_REST + "api/coin/getAllCoin/" + pageNumber, {
+            method: "GET",
+            headers: Util.headersList
+        }).then((res) => res.json())
+            .then((json) => {
+                console.log(json);
+                this.setState({
+                    coins: json,
                     DataisLoaded: true
                 });
             })
@@ -131,7 +151,13 @@ class ListProduct extends React.Component {
                             )
                          }
             </ul>    
-           </div>      
+           </div>
+           <Pagination
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={10}
+                        totalItemsCount={4500}
+                        onChange={this.handlePageChange.bind(this)}
+                    />      
            </div>   
             );
     }
