@@ -26,21 +26,28 @@ class Cart extends React.Component {
           type:'cart'
         });
         localStorage.removeItem('statusCart');
-        alert("You have cancel Payment.")
+        Util.swal("","You have cancel Payment.","success")
         
       }else{
-        if (window.confirm('Do you want to cancel order ?')){
-          fetch(Util.URL_REST+"api/order/cancel/"+ordtmt,{
-            method: "GET",
-            headers: Util.headersList
-            }).then((res) => res.json())
-           .then((json) => {
-                alert(json.returnMessage);
-                window.location.reload();
-            })  
-        }else{
-          return false;
-        }
+        Util.swal({
+          text: "Do you want to cancel order ?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            fetch(Util.URL_REST+"api/order/cancel/"+ordtmt,{
+              method: "GET",
+              headers: Util.headersList
+              }).then((res) => res.json())
+             .then((json) => {
+              Util.coverSwal(json.returnMessage,"success")
+              })
+          } else {
+            return false;
+          }
+        });
       }
       
        
@@ -70,18 +77,25 @@ class Cart extends React.Component {
         this.setState({ [event.target.name]: event.target.value.trim() });
     }
     cancelProduct =(ordtmt , pdtId)=>{
-      if (window.confirm('Do you want to cancel product ?')){
-        fetch(Util.URL_REST+"api/order/cancelOnly/"+ordtmt+"/"+pdtId,{
-          method: "GET",
-          headers: Util.headersList
-          }).then((res) => res.json())
-         .then((json) => {
-              alert(json.returnMessage);
-              window.location.reload();
-          })  
-      }else{
-        return false;
-      }
+      Util.swal({
+        text: "Do you delete product_ID: "+pdtId+" in cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch(Util.URL_REST+"api/order/cancelOnly/"+ordtmt+"/"+pdtId,{
+            method: "GET",
+            headers: Util.headersList
+            }).then((res) => res.json())
+           .then((json) => {
+            Util.coverSwal(json.returnMessage,"success")
+            })  
+        } else {
+         return false;
+        }
+      });
     }
     checkOut =()=>{
       alert(this.state.sumAmt.toFixed(2));

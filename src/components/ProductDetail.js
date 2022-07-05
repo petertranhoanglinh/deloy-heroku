@@ -62,9 +62,12 @@ const ProductDetail = () =>{
     headers: Util.headersList
     }).then((res) => res.json())
    .then((json) => {
-        alert(json.returnMessage);
-        window.location.reload();
+        Util.coverSwal(json.returnMessage,"success",checkWill())
     })  
+}
+
+const checkWill = () =>{
+  alert('adasdsd');
 }
     return (
         <div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Util from "./Util";
+
 class TransCoin extends React.Component {
 
     // Constructor
@@ -34,7 +35,10 @@ class TransCoin extends React.Component {
             headers: Util.headersList
         }).then((res) => res.json())
             .then((json) => {
-                alert( Util.setComma(json));
+                Util.swal({
+                    text:  + qty + ' '+coin1+ ' = '+Util.setComma(json) +' '+ coin2,
+                    icon: "success",
+                  });
             })
     }
     componentDidMount() {

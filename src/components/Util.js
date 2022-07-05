@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 var URL_REST = "https://tienaodemo12.herokuapp.com/";
 //var URL_REST = "http://localhost:8089/";
 //var URL = "http://localhost:3000/";
@@ -25,5 +26,24 @@ function setComma(n) {
 	}
 	return n;
 }
+
+function coverSwal(text,icon){
+  swal(text, {
+    buttons: {
+      OK: true,
+    },
+    icon: icon,
+  })
+  .then((value) => {
+    switch (value) {
+      case "OK":
+        window.location.reload();
+        break;
+      default:
+      return false
+    }
+  });
+
+}
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { URL, URL_REST, headersList, userDetail,headersListSave,setComma};
+export default {coverSwal, swal,URL, URL_REST, headersList, userDetail,headersListSave,setComma};

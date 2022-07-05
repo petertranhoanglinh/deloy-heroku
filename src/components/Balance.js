@@ -1,6 +1,7 @@
 import React from "react";
 import Util from "./Util";
 import Pagination from "react-js-pagination";
+import swal from "sweetalert";
 
 class Balance extends React.Component {
   // Constructor
@@ -23,44 +24,56 @@ class Balance extends React.Component {
   };
 
   withdraw = (quantityCoin, coinId) => {
-    if (window.confirm("Do you want to send coins?")) {
-      if (this.state.quantitySend > quantityCoin) {
-        alert(
-          "The amount of coins sent cannot be greater than the amount available"
-        );
+    Util.swal({
+      text: "Do you want to send coins?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        if (this.state.quantitySend > quantityCoin) {
+          Util.swal(
+            "",
+            "The amount of coins sent cannot be greater than the amount available",
+            "error"
+          );
+          return false;
+        }
+        var raw = JSON.stringify({
+          contract: this.state.contract,
+          coinId: coinId,
+          quantity: this.state.quantitySend,
+        });
+  
+        var requestOptions = {
+          method: "POST",
+          headers: Util.headersList,
+          body: raw,
+          redirect: "follow",
+        };
+  
+        fetch(Util.URL_REST + "api/account/withdraw", requestOptions)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+          })
+          .then((result) => {
+            if (result.returnMessage === "fail") {
+              Util.swal("","address does not exist","warning");
+            } else {
+              Util.swal("",result.returnMessage,"success");
+              this.componentDidMount();
+            }
+          })
+          .catch((error) => console.log("error", error));
+        
+      } else {
         return false;
       }
-      var raw = JSON.stringify({
-        contract: this.state.contract,
-        coinId: coinId,
-        quantity: this.state.quantitySend,
-      });
-
-      var requestOptions = {
-        method: "POST",
-        headers: Util.headersList,
-        body: raw,
-        redirect: "follow",
-      };
-
-      fetch(Util.URL_REST + "api/account/withdraw", requestOptions)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-        })
-        .then((result) => {
-          if (result.returnMessage === "fail") {
-            alert("address does not exist");
-          } else {
-            alert(result.returnMessage);
-            this.componentDidMount();
-          }
-        })
-        .catch((error) => console.log("error", error));
-    } else {
-      return false;
-    }
+    });
+  
   };
   // ComponentDidMount is used to
   // execute the code
