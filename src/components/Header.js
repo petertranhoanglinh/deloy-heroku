@@ -92,15 +92,14 @@ export default class Header extends React.Component{
                 {/* Collection of nav links, forms, and other content for toggling */}
                 <div id="navbarCollapse" className="collapse navbar-collapse">		
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="active"><Link to={'/'}><i className="fa fa-home" /><span>Home</span></Link></li>
-                    <li> <Link to={'/trans'}><i className="glyphicon glyphicon-align-left" aria-hidden="true"> </i> <span>Coin conversion</span></Link></li>
-                    <li> <Link to={'/balance'}><i className="fa fa-briefcase" /><span>Balance</span></Link></li>
-                    <li><Link to={'/product'}><i className="fa fa-gears" /><span>Product</span></Link></li>
-                    <li><Link to={'/coin'}><i className="fa fa-users" /><span>Coin</span></Link></li>
-                    <li><Link to = {'/a'}><i className="fa fa-pie-chart" /><span>Reports</span></Link></li>
-                    <li><Link to={'/message'}><i className="fa fa-envelope" /><span>Messages</span></Link></li>		
-                    <li><Link to = {'/notify'}><i className="fa fa-bell" /><span>Notifications</span></Link></li>
-                    <li><Link to = {'/cart'}> <span class="glyphicon glyphicon-shopping-cart"></span><span>Cart ({this.state.count})</span></Link></li>
+                    <li onClick={() => this.setState({active:1})} className={this.state.active === 1 ? 'active-btn' : null}><Link to={'/'}><i className="fa fa-home" /><span>Home</span></Link></li>
+                    <li onClick={() => this.setState({active:2})} className={this.state.active === 2 ? 'active-btn' : null}> <Link to={'/trans'}><i className="glyphicon glyphicon-align-left" aria-hidden="true"> </i> <span>Coin conversion</span></Link></li>
+                    <li onClick={() => this.setState({active:3})} className={this.state.active === 3 ? 'active-btn' : null}> <Link to={'/balance'}><i className="fa fa-briefcase" /><span>Balance</span></Link></li>
+                    <li onClick={() => this.setState({active:4})} className={this.state.active === 4 ? 'active-btn' : null}><Link to={'/product'}><i className="fa fa-gears" /><span>Product</span></Link></li>
+                    <li onClick={() => this.setState({active:5})} className={this.state.active === 5 ? 'active-btn' : null}><Link to={'/coin'}><i className="fa fa-users" /><span>Coin</span></Link></li>
+                    <li onClick={() => this.setState({active:6})} className={this.state.active === 6 ? 'active-btn' : null}><Link to = {'/a'}><i className="fa fa-pie-chart" /><span>Reports</span></Link></li>	
+                    <li onClick={() => this.setState({active:8})} className={this.state.active === 8 ? 'active-btn' : null}><Link to = {'/notify'}><i className="fa fa-bell" /><span>Notifications</span></Link></li>
+                    <li onClick={() => this.setState({active:9})} className={this.state.active === 9 ? 'active-btn' : null}><Link to = {'/cart'}> <span class="glyphicon glyphicon-shopping-cart"></span><span>Cart ({this.state.count})</span></Link></li>
                     <li className="dropdown">
                       <a href="a" data-toggle="dropdown" className="dropdown-toggle user-action"><img src={this.state.image} className="avatar" alt="Login ? " />{this.state.text}<b className="caret" /></a>
                       <ul className="dropdown-menu">

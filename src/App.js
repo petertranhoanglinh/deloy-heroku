@@ -8,7 +8,6 @@ import Balance from './components/Balance';
 import Coin from './components/Coin';
 import SignUp from './screen/SignUp';
 import Profile from './components/Profile';
-import Message from './components/Message';
 import Notify from './components/Notify';
 import AddNotify from './components/AddNotify';
 import AddProduct from './components/AddProduct';
@@ -32,7 +31,6 @@ function App(){
         <Route path='/cart' element = {<Cart></Cart>}/>
         <Route path='/signUp' element = {<SignUp></SignUp>}/>
         <Route path='/profile' element = {<Profile></Profile>}/>
-        <Route path='/message' element = {<Message></Message>}/>
         <Route path='/notify' element = {<Notify></Notify>}/>
         <Route path='/addNotity' element = {<AddNotify></AddNotify>}/>
         <Route path='/addProduct' element = { <AddProduct/>}/>

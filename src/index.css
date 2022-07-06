@@ -197,3 +197,6 @@ body{
 .btnSaveProfile{
   margin-top: 15px;
 }
+.active-btn{
+  background-color: blue;
+}
