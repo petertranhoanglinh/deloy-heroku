@@ -1,7 +1,7 @@
 import React from "react";
 import Util from "./Util";
 import Pagination from "react-js-pagination";
-import swal from "sweetalert";
+
 
 class Balance extends React.Component {
   // Constructor
