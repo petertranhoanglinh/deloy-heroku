@@ -60,10 +60,13 @@ class Balance extends React.Component {
             }
           })
           .then((result) => {
-            if (result.returnMessage === "fail") {
-              Util.swal("","address does not exist","warning");
-            } else {
+            if (result.status === "404") {
+              Util.swal("","fail","error");
+            } else if (result.status === "5") {
               Util.swal("",result.returnMessage,"success");
+              this.componentDidMount();
+            }else{
+              Util.swal("",result.returnMessage,"warning");
               this.componentDidMount();
             }
           })
