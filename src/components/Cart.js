@@ -113,6 +113,10 @@ class Cart extends React.Component {
       });
     }
     checkOut =()=>{
+      if(this.state.sumAmt === 0){
+        Util.swal('','Please Toltal AMT > 0' , 'error')
+        return false;
+      }
       Util.swal({
         text: "Do you create order: "+this.state.sumAmt.toFixed(2) + "$",
         icon: "warning",
