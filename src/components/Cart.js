@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import React from "react";
 import Util from "./Util";
-
+import PayMethod from './PayMethod';
 
 class Cart extends React.Component {
 
@@ -14,7 +14,8 @@ class Cart extends React.Component {
             ordtmt:0,
             sumAmt:0,
             type:'cart',
-            showTr:''
+            showTr:'',
+            methodPay:'',
         };
     }
     calcel = (ordtmt) => {
@@ -293,7 +294,7 @@ class Cart extends React.Component {
                               type !=='checkout'? 
                               <h3><strong>{Util.setComma(this.state.sumAmt.toFixed(2))}$</strong>
                               </h3>: 
-                              <h3><strong>Please payment!!</strong>
+                              <h3><strong>Please payment {Util.setComma(this.state.sumAmt.toFixed(2))} !!</strong>
                               </h3>
                               
                             }
@@ -311,7 +312,7 @@ class Cart extends React.Component {
                               </button>
                               {
                               type ==='checkout'? 
-                              <select name="" id="input" class="form-control" style={{paddingTop:'10px'}}>
+                              <select name="methodPay" id="input" class="form-control" onChange={this.setPram} style={{paddingTop:'10px'}}>
                                 <option value="CARD">Receive product before</option>
                                 <option value="CARD">Via ATM in VietNam</option>
                                 <option value="COIN">Via In Coins</option>
@@ -337,9 +338,12 @@ class Cart extends React.Component {
                         </tr>
                       </tbody>
                     </table>
+                     {type==='checkout'? <PayMethod name ={this.state.methodPay}></PayMethod>:null}
                   </div>
                 </div>
+                
               </div>
+             
             </div>
             );
     }

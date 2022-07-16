@@ -16,15 +16,12 @@ class Coin extends React.Component {
     UpdatePrice = (coinId) => {
         fetch(Util.URL_REST + "api/coin/getMaketCap/" + coinId).then((res) => res.json())
             .then((json) => {
-                console.log(json);
                 this.componentDidMount();
             })
 
     }
 
     handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
-        //  alert(this.state.activePage);
         this.setState({ activePage: pageNumber });
 
         fetch(Util.URL_REST + "api/coin/getAllCoin/" + pageNumber, {
@@ -32,12 +29,14 @@ class Coin extends React.Component {
             headers: Util.headersList
         }).then((res) => res.json())
             .then((json) => {
-                console.log(json);
+               console.log(json);
                 this.setState({
                     coins: json,
                     DataisLoaded: true
                 });
+                
             })
+        
 
     }
 
@@ -66,7 +65,6 @@ class Coin extends React.Component {
                 headers: Util.headersList
             }).then((res) => res.json())
                 .then((json) => {
-                    console.log(json);
                     this.setState({
                         coins: json,
                         DataisLoaded: true
