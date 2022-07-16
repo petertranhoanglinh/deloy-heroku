@@ -62,7 +62,14 @@ const ProductDetail = () =>{
     headers: Util.headersList
     }).then((res) => res.json())
    .then((json) => {
-        Util.coverSwal(json.returnMessage,"success")
+        if(json.status === "1"){
+          Util.coverSwal(json.returnMessage,"success")
+        }else if(json.status ==="2"){
+          Util.swal("",json.returnMessage,"error")
+        }else{
+          Util.swal("",json.returnMessage,"warning")
+        }
+        
     })  
 }
 

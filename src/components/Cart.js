@@ -19,16 +19,33 @@ class Cart extends React.Component {
     }
     calcel = (ordtmt) => {
       if(this.state.type === 'checkout'){
-        this.setState({
-          showTr:'',
-          type:'cart'
+       
+        Util.swal({
+          text: "You have cancel Payment. ?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            fetch(Util.URL_REST+"api/order/calcelOrd",{
+              method: "GET",
+              headers: Util.headersList
+              }).then((res) => res.json())
+             .then((json) => {
+              Util.coverSwal(json.returnMessage,"success")
+              this.setState({
+                showTr:'',
+                type:'cart'
+              });
+              })
+          } else {
+            return false;
+          }
         });
-        localStorage.removeItem('statusCart');
-        Util.swal("","You have cancel Payment.","success")
-        
       }else{
         Util.swal({
-          text: "Do you want to cancel order ?",
+          text: "Do you want to cancel order_tmt ?",
           icon: "warning",
           buttons: true,
           dangerMode: true,
@@ -96,16 +113,60 @@ class Cart extends React.Component {
       });
     }
     checkOut =()=>{
-      alert(this.state.sumAmt.toFixed(2));
-      this.setState({
-        showTr:'none',
-        type:'checkout'
-      }
-      )
-      localStorage.setItem("statusCart" , 'checkout');
+      Util.swal({
+        text: "Do you create order: "+this.state.sumAmt.toFixed(2) + "$",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          //call api checkout to create order after choose method payment
+          fetch(Util.URL_REST+"api/order/checkOut/"+this.state.sumAmt.toFixed(2),{
+            method: "GET",
+            headers: Util.headersList
+            }).then((res) => res.json())
+           .then((json) => {
+              if(json.status ==="1"){
+                Util.coverSwal(json.returnMessage,"success");
+                this.setState({
+                  showTr:'none',
+                  type:'checkout'
+                }
+                )
+              }else{
+                Util.coverSwal(json.returnMessage,"error")
+              }
+            })  
+        } else {
+         return false;
+        }
+      });
     }
     componentDidMount() {
-      if(localStorage.getItem('statusCart') === 'checkout'){
+   // 
+   
+      fetch(Util.URL_REST + "api/order/checkStep" ,{
+        method: "GET",
+        headers: Util.headersList
+       }).then((res) => res.json())
+        .then((json) => {
+           if(json == true){
+            this.setState({
+              showTr:'',
+              type:'cart'
+            }
+            )
+           }else{
+            this.setState({
+              showTr:'none',
+              type:'checkout'
+            }
+            )
+           }              
+        })
+   //
+      if(this.state.type === 'checkout'){
         this.setState({
           showTr:'none',
           type:'checkout'
@@ -124,15 +185,15 @@ class Cart extends React.Component {
                       DataisLoaded: true
                   });
                   }else{
-                  for(var i = 0; i < json.length ;i++){
-                    sumAmt1 = json[i].amt + sumAmt1;
-                  }
-                  this.setState({
-                      DataisLoaded: true,
-                      carts: json,
-                      ordtmt:json[0].ordTmt,
-                      sumAmt:sumAmt1,
-                  });
+                    for(var i = 0; i < json.length ;i++){
+                      sumAmt1 = json[i].amt + sumAmt1;
+                    }
+                    this.setState({
+                        DataisLoaded: true,
+                        carts: json,
+                        ordtmt:json[0].ordTmt,
+                        sumAmt:sumAmt1,
+                    });
                   }              
                 })
         
@@ -202,7 +263,12 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h5>Subtotal</h5></td>
-                          <td className="text-right"><h5><strong>{ Util.setComma(this.state.sumAmt.toFixed(2))}$</strong></h5></td>
+                          <td className="text-right">
+                            <h5>
+                              <strong>
+                                { Util.setComma(this.state.sumAmt.toFixed(2))}$</strong>
+                            </h5>
+                          </td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>
@@ -216,7 +282,18 @@ class Cart extends React.Component {
                           <td> &nbsp; </td>
                           <td> &nbsp; </td>
                           <td><h3>Total(USD)</h3></td>
-                          <td className="text-right"><h3><strong>{Util.setComma(this.state.sumAmt.toFixed(2))}$</strong></h3></td>
+                          <td className="text-right">
+                            
+
+                            {
+                              type !=='checkout'? 
+                              <h3><strong>{Util.setComma(this.state.sumAmt.toFixed(2))}$</strong>
+                              </h3>: 
+                              <h3><strong>Please payment!!</strong>
+                              </h3>
+                              
+                            }
+                          </td>
                         </tr>
                         <tr>
                           <td> &nbsp; </td>

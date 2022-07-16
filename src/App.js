@@ -20,6 +20,8 @@ import Cart from './components/Cart';
 function App(){
   return (
     <div>
+       {/* Custom styles for this template */}
+       <link href="css/styleTgdd.css" rel="stylesheet" />
       <Header></Header>
 
       <Routes>
