@@ -338,6 +338,7 @@ class Cart extends React.Component {
                         </tr>
                       </tbody>
                     </table>
+                     {type==='checkout'? <Order name ={this.state.methodPay}></Order>:null}
                      {type==='checkout'? <PayMethod name ={this.state.methodPay}></PayMethod>:null}
                   </div>
                 </div>
@@ -350,3 +351,28 @@ class Cart extends React.Component {
 }
 
 export default Cart;
+
+const Order =(props)=>{
+  
+  return(
+    <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>table</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+       </div>
+  )
+       
+   
+       
+     
+
+}
