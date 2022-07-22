@@ -80,7 +80,7 @@ class Cart extends React.Component {
         })  
     }
     minus =(pdtId,cartQty)=>{
-      if(cartQty === 1){
+      if(cartQty === '1'){
         Util.swal('' , 'Qty have less than zero', 'error');
         return false;
       }
