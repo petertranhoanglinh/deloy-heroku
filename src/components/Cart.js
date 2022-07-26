@@ -79,7 +79,11 @@ class Cart extends React.Component {
             this.componentDidMount();
         })  
     }
-    minus =(pdtId)=>{
+    minus =(pdtId,cartQty)=>{
+      if(cartQty === '1'){
+        Util.swal('' , 'Qty have less than zero', 'error');
+        return false;
+      }
       var qty = -1
       fetch(Util.URL_REST+"api/order/callOrdTmt/"+pdtId+"/" + qty, {
         method: "POST",
@@ -140,7 +144,7 @@ class Cart extends React.Component {
                 }
                 )
               }else{
-                Util.coverSwal(json.returnMessage,"error")
+                Util.swal('',json.returnMessage,"error")
               }
             })  
         } else {
@@ -249,7 +253,7 @@ class Cart extends React.Component {
                             <td className="col-sm-1 col-md-1" style={{textAlign: 'center'}}>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{cart.qty}</strong></td>
                               <button  style={{display:this.state.showTr}} onClick={() => this.plus(cart.pdtId)}>+</button>
-                              <button  style={{display:this.state.showTr}} onClick={() => this.minus(cart.pdtId)}>-</button>
+                              <button  style={{display:this.state.showTr}} onClick={() => this.minus(cart.pdtId,cart.qty)}>-</button>
                             </td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{ Util.setComma(cart.pricePdt)}{" "}{cart.kindCoin}</strong></td>
                             <td className="col-sm-1 col-md-1 text-center"><strong>{Util.setComma(cart.amt.toFixed(2))}</strong></td>

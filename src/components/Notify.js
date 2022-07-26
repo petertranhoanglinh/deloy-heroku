@@ -56,13 +56,6 @@ class Notify extends React.Component {
     }
     
     componentDidMount() {
-        if(this.state.DataisLoaded === true){
-            if(Util.userDetail.role === 'ADMIN'){
-                this.setState({
-                    showResults : true
-                });
-            }
-        }
         fetch(Util.URL_REST+"api/notify/getAll/1", {
             method: "GET",
             headers: Util.headersList
@@ -73,6 +66,11 @@ class Notify extends React.Component {
                     notifys: json,
                     DataisLoaded: true
                 });
+                if(Util.userDetail.role === 'ADMIN'){
+                    this.setState({
+                        showResults : true
+                    });
+                }
             })
 
     }
