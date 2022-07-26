@@ -144,7 +144,7 @@ class Cart extends React.Component {
                 }
                 )
               }else{
-                Util.coverSwal(json.returnMessage,"error")
+                Util.swal('',json.returnMessage,"error")
               }
             })  
         } else {
