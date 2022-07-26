@@ -16,6 +16,7 @@ class Cart extends React.Component {
             type:'cart',
             showTr:'',
             methodPay:'',
+            listOrd:[]
         };
     }
     calcel = (ordtmt) => {
@@ -138,6 +139,7 @@ class Cart extends React.Component {
            .then((json) => {
               if(json.status ==="1"){
                 Util.coverSwal(json.returnMessage,"success");
+                this.getOrd();
                 this.setState({
                   showTr:'none',
                   type:'checkout'
@@ -152,9 +154,22 @@ class Cart extends React.Component {
         }
       });
     }
+
+    getOrd=()=>{
+      // get list ord 
+      fetch(Util.URL_REST+"api/order/getOrd",{
+            method: "GET",
+            headers: Util.headersList
+      }).then((res) => res.json())
+        .then((json) => {
+           console.log(json);
+           this.setState({
+            listOrd:json
+           })
+        })  
+    }
     componentDidMount() {
    // 
-   
       fetch(Util.URL_REST + "api/order/checkStep" ,{
         method: "GET",
         headers: Util.headersList
@@ -342,7 +357,7 @@ class Cart extends React.Component {
                         </tr>
                       </tbody>
                     </table>
-                     {type==='checkout'? <Order name ={this.state.methodPay}></Order>:null}
+                     {type==='checkout'? <Order name ={this.state.listOrd}></Order>:null}
                      {type==='checkout'? <PayMethod name ={this.state.methodPay}></PayMethod>:null}
                   </div>
                 </div>
@@ -357,19 +372,32 @@ class Cart extends React.Component {
 export default Cart;
 
 const Order =(props)=>{
-  
+  const data = props.name;
+  console.log(data);
   return(
     <div class="table-responsive">
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>table</th>
+              <th>Items to be paid for</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td></td>
+              <td>Ord_Id</td>
+              <td>Seller</td>
+              <td>Status</td>
+              <td>Amt</td>
             </tr>
+              {
+                data.map(
+                  ord => 
+                  <tr>
+                    <td>{ord.pdtId}</td>
+                  </tr>
+                  
+                )
+              }
           </tbody>
         </table>
        </div>

@@ -28,7 +28,7 @@ function PayMethod(props){
         {
             state.balances.map(
                 balance =>
-                    <option>{balance.coinId} Have you quantity {balance.quantityReal} Total price: {balance.value}$</option>
+                    <option value={balance.coinId}>{balance.coinId} Have you quantity {balance.quantityReal} Total price: {balance.value}$</option>
             )
         }
        </select>
