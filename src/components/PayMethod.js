@@ -3,6 +3,7 @@ import Util from './Util';
    
 function PayMethod(props){  
     const [state, setValue] = useState({balances:[]});
+    const [coin, setCoin] = useState("");
     useEffect(() => {
             const getBalance = async() =>{
                 fetch(Util.URL_REST + "api/account/balance/*/"+1, {
@@ -20,27 +21,33 @@ function PayMethod(props){
             }
              getBalance();
       }, []);
-    if(props.name === "COIN"){
-    return (
-    <div>
-        <h1>{props.name}</h1>
-       <select name="" id="input" class="form-control">
-        {
-            state.balances.map(
-                balance =>
-                    <option value={balance.coinId}>{balance.coinId} Have you quantity {balance.quantityReal} Total price: {balance.value}$</option>
-            )
-        }
-       </select>
-       
-    </div>)
+    switch (props.name) {
+        
+        case 'COIN':
+            return (
+            <div>
+                <h1>{props.name}</h1>
+               <select name="coinId"  class="form-control"    onChange={(e) => setCoin(e.target.value)}>
+               <option value="">Choose coin to payment</option>
+                {
+                    state.balances.map(
+                        balance =>
+                            <option value={balance.coinId}>{balance.coinId} Have you quantity {balance.quantityReal} Total price: {balance.value}$</option>
+                    )
+                }
+               </select>
+               
+            </div>)
+        default:
+            return null;
+         
+    }
+   
         
        
     
-    }
-    else{
-        return null;
-    }
+    
+  
     
    
 }
