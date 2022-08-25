@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Link } from "react-router-dom";
 import React from "react";
 import Util from "./Util";
@@ -225,6 +226,16 @@ class Cart extends React.Component {
         }
       });
   }
+  callOrder = (kind ,ordId) => {
+     switch (kind) {
+      case 'coin':
+        
+        break;
+     
+      default:
+        break;
+     }
+  };
   render() {
     const { DataisLoaded, carts, type } = this.state;
     if (!DataisLoaded)
