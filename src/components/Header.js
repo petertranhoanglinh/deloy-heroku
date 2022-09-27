@@ -107,6 +107,10 @@ export default class Header extends React.Component{
                         {
                           this.state.showHide?<li><Link to={'/addNotity'}><i className="fa fa-calendar-o" /> Add Notifications</Link></li>:null
                         }
+                        {
+                          this.state.showHide?<li><Link to={'/mangagerMexc'}> <i className="fa fa-users" />Connect your Mexc balance</Link></li>:null
+
+                        }
                         <li className="divider" />
                         <li> <Link to={'/signUp'}><i className="fa fa-calendar-o" /> SignUp</Link></li>
                         <li> <Link to={'/login'}><i class="fa fa-sign-in" aria-hidden="true"></i> Login</Link></li>

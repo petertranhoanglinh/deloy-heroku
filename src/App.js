@@ -16,6 +16,7 @@ import ProductDetail from './components/ProductDetail';
 import TransCoin from './components/TransCoin';
 import { MessengerChat } from "react-messenger-chat-plugin";
 import Cart from './components/Cart';
+import Showinfomexcmangager from './components/Showinfomexcmangager';
 
 function App(){
   return (
@@ -40,6 +41,7 @@ function App(){
        <Route path='/listProduct' element = {<ListProduct></ListProduct>}/>
        <Route path='/addProduct/:pdtId' element = {<AddProduct></AddProduct>}/>
        <Route path='/trans' element = {<TransCoin></TransCoin>}/>
+       <Route path='/mangagerMexc' element = {<Showinfomexcmangager></Showinfomexcmangager>}/>
       </Routes>
       <MessengerChat
         pageId="536477823552110"
