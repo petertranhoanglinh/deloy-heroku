@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Link } from "react-router-dom";
-import React from "react";
+//import React from "react";
 import Util from "./Util";
+import React, { useState, useEffect } from 'react';
 import PayMethod from "./PayMethod";
 
 class Cart extends React.Component {
@@ -457,7 +458,7 @@ class Cart extends React.Component {
                   <PayMethod name={this.state.methodPay}></PayMethod>
                 ) : null}
               </div>
-              {type === "checkout" ? <Deli></Deli> : null}
+              {type === "checkout" ? <Deli  ord={this.state.listOrd}></Deli> : null}
             </div>
           </div>
         </div>
@@ -469,7 +470,6 @@ export default Cart;
 
 const Order = (props) => {
   const data = props.name;
-  console.log(data);
   return (
     <div class="table-responsive">
       <table class="table table-hover">
@@ -500,24 +500,67 @@ const Order = (props) => {
 };
 
 const Deli = (props) => {
-  return (
+
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+    const handleInput = () => {
+      var myHeaders = new Headers();
+      var ordId = document.getElementById('ordId').value;
+      var address = (document.getElementById('address').value);
+      var phone = document.getElementById('phone').value;
+      setAddress(address);
+      setPhone(phone);
+      myHeaders.append("Content-Type", "application/json");
+      var raw = JSON.stringify({
+        phone: phone,
+        address: address,
+        ordId:ordId
+      });
+      var requestOptions = {
+        method: "POST",
+        headers: Util.headersList,
+        body: raw,
+        redirect: "follow",
+      };
+      fetch(Util.URL_REST + "api/order/callDeliSp", requestOptions)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          return response.json();
+        }
+        throw Error(response.status);
+      })
+      .then((result) => {
+        if (result.status === "OK") {
+          Util.swal("", result.returnMessage, "success");
+        } else {
+          Util.swal("", result.returnMessage, "error");
+        }
+      })
+      .catch((error) => {
+        Util.swal("", "Please login again", "error");
+      });
+    };
+
+    const ordHtml = props.ord.map((ord) =>
     <>
-      <legend>Infomation and address of buyer</legend>
-      <div className="form-group">
-        <label for="">Name</label>
-        <input
-          type="text"
-          className="form-control"
-          id=""
-          placeholder="name sender"
-        />
-      </div>
-      <div className="form-group">
+    <div className="form-group">
+      <label for="">Ord_Id</label>
+      <input
+        type="text"
+        id="ordId"
+        value={ord.ordId}
+        className="form-control"
+      />
+     </div>
+    <div className="form-group">
         <label for="">Adress</label>
         <input
           type="text"
+          id="address"
+          onChange={(e) => setAddress(e.target.value)}
+          defaultValue ={ord.address}
           className="form-control"
-          id=""
           placeholder="address sender"
         />
       </div>
@@ -525,11 +568,23 @@ const Deli = (props) => {
         <label for="">Phone</label>
         <input
           type="text"
+          id="phone"
+          defaultValue ={ord.phone}
+          onChange={(e) => setPhone(e.target.value)}
           className="form-control"
-          id=""
           placeholder="phone sender"
         />
+         <button type="button" class="btn btn-primary" onClick={(e) => handleInput()}>Save Infomation to order</button>
       </div>
+    </>
+    
+     
+  );
+  return (
+    <>
+      <legend>Infomation and address of buyer</legend>
+      {ordHtml}
+      
     </>
   );
 };

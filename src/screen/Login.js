@@ -46,7 +46,7 @@ export default class Login extends React.Component{
             window.location.href = Util.URL;
         })
         .catch(error => {console.log('error', error)
-        alert("userName or Password are wrong ")
+        Util.swal('','UserName or Password are wrong','error')
     });
    
     }
